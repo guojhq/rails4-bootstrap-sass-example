@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :users
+
+  get 'signup' => 'users#new'
+
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
