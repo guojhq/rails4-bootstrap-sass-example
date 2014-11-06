@@ -1,4 +1,4 @@
-class HomeController < SecureApplicationController
+class HomeController < ApplicationController
 
   def index
     @users = User.all

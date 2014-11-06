@@ -1,5 +1,8 @@
-class UsersController < SecureApplicationController
+class Admin::UsersController < ApplicationController
   include SessionsHelper
+
+  def index
+  end
 
   def new
     @user = User.new

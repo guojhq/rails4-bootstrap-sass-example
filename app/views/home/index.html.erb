@@ -19,7 +19,7 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.created_at %></td>
-        <td><%= link_to 'View', user_path(user) %></td>
+        <td><%= link_to 'View', admin_user_path(user) %></td>
       </tr>
       <% end %>
     </table>

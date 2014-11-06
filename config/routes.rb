@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :users
+  namespace :admin do
+    resources :users
+  end
 
-  get 'signup'     => 'users#new'
+  get 'signup'     => 'admin/users#new'
   get 'signin'     => 'sessions#new'
   post 'signin'    => 'sessions#create'
   delete 'signout' => 'sessions#destroy'
