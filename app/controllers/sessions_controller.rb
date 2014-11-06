@@ -9,7 +9,11 @@ class SessionsController < ApplicationController
 
     if @user and @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
-      redirect_to root_path, flash: { success: "Welcome back #{@user.name}" }
+      if @user.admin?
+        redirect_to admin_users_path, flash: { success: "Welcome back #{@user.name}" }
+      else
+        redirect_to root_path, flash: { success: "Welcome back #{@user.name}" }
+      end
     else
       flash.now[:danger] = 'Invalid email and password combination'
       render 'new'

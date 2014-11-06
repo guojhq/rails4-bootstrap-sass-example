@@ -10,7 +10,7 @@ class SecureApplicationController < ActionController::Base
   private
 
   def check_login
-    unless logged_in?
+    unless logged_in? and current_user.admin?
       flash[:danger] = 'You must be logged in'
       redirect_to signin_path
     end
