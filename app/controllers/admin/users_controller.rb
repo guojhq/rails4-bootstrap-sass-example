@@ -1,7 +1,10 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < SecureApplicationController
   include SessionsHelper
 
+  before_filter :check_login, except: [:new, :create]
+
   def index
+    @users = User.all
   end
 
   def new
