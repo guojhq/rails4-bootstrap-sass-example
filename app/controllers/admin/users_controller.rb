@@ -9,6 +9,7 @@ class Admin::UsersController < SecureApplicationController
 
   def new
     @user = User.new
+    @user.build_profile # create the blank profile
   end
 
   def create
@@ -28,6 +29,7 @@ class Admin::UsersController < SecureApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation,
+                                 profile_attributes: [:id, :location, :birthdate])
   end
 end

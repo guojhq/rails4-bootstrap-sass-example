@@ -22,6 +22,21 @@
         <%= f.label :email %>
         <%= f.text_field :email, class: 'form-control' %>
       </div>
+
+      <%= f.fields_for :profile do |p| %>
+
+        <div class="form-group">
+          <%= p.label :location %>
+          <%= p.text_field :location, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= p.label :birthdate %>
+          <%= p.text_field :birthdate, class: 'form-control' %>
+        </div>
+
+      <% end %>
+
       <div class="form-group">
         <%= f.label :password %>
         <%= f.text_field :password, class: 'form-control' %>
