@@ -4,7 +4,13 @@ class Admin::UsersController < SecureApplicationController
   before_filter :check_login, except: [:new, :create]
 
   def index
-    @users = User.all
+    search_term = params[:search][:search_term] if params[:search]
+
+    if(search_term)
+      @users = User.where("email LIKE '%#{search_term}%' OR name LIKE '%#{search_term}%'")
+    else
+      @users = User.all
+    end
   end
 
   def new
