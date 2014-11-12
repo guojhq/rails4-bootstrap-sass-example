@@ -18,6 +18,21 @@ class Admin::UsersController < SecureApplicationController
     @user.build_profile # create the blank profile
   end
 
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = 'Successfully updated profile'
+      redirect_to admin_user_path(@user)
+    else
+      flash[:danger] = 'Failed to update profile'
+      render 'edit'
+    end
+  end
+
   def create
     @user = User.new(user_params)
 
@@ -36,6 +51,6 @@ class Admin::UsersController < SecureApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation,
-                                 profile_attributes: [:id, :location, :birthdate])
+                                 profile_attributes: [:id, :location, :birthdate, :avatar])
   end
 end

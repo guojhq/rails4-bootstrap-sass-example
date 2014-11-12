@@ -40,3 +40,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap-sass', '~> 3.3.0'
 gem 'autoprefixer-rails'
+
+# for file upload support
+gem 'carrierwave'
+
+gem "mini_magick", "~> 4.0.0.rc"
