@@ -45,3 +45,5 @@ gem 'autoprefixer-rails'
 gem 'carrierwave'
 
 gem "mini_magick", "~> 4.0.0.rc"
+
+gem 'geokit-rails'

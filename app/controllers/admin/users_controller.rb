@@ -4,13 +4,24 @@ class Admin::UsersController < SecureApplicationController
   before_filter :check_login, except: [:new, :create]
 
   def index
-    search_term = params[:search][:search_term] if params[:search]
+    @distance = 10
 
-    if(search_term)
-      @users = User.where("email LIKE '%#{search_term}%' OR name LIKE '%#{search_term}%'")
-    else
-      @users = User.all
+    if params[:search]
+      @search_term = params[:search][:search_term] if params[:search][:search_term]
+      @distance    = params[:search][:within] if params[:search][:within]
     end
+
+    if(@search_term)
+      @users = Profile.joins(:user) # loads the user and makes it available for the query
+                      .within(@distance, :origin => Profile.first, :units => :kms) # checks the @distance < ---- this is from geokit
+                      .where("users.email LIKE ? OR users.name LIKE ?", "%#{@search_term}%", "%#{@search_term}%") # this checks the name or email
+                      .collect(&:user) # this collexts it into an array
+                      
+    else
+      @users = Profile.within(@distance, :origin => Profile.first, :units => :kms)
+                      .collect(&:user)
+    end
+
   end
 
   def new
