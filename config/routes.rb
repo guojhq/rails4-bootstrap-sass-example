@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post 'signin'    => 'sessions#create'
   delete 'signout' => 'sessions#destroy'
 
+  get 'pdftest'    => 'home#pdftest'
+
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -47,3 +47,6 @@ gem 'carrierwave'
 gem "mini_magick", "~> 4.0.0.rc"
 
 gem 'geokit-rails'
+
+# gem 'prawn-rails'
+gem 'prawn-rails', :git => 'https://github.com/cortiz/prawn-rails.git'
