@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post 'signin'    => 'sessions#create'
   delete 'signout' => 'sessions#destroy'
 
+  get 'receipt'    => 'home#send_receipt'
   get 'pdftest'    => 'home#pdftest'
 
   root 'home#index'
